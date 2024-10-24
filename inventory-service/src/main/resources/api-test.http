@@ -1,0 +1,12 @@
+
+POST http://localhost:8082/api/inventory
+Content-Type: application/json
+
+{
+"skuCode" : "",
+"quantity": 100
+}
+
+### Get product by skucode
+
+GET http://localhost:8082/api/inventory/iPhone-12

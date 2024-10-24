@@ -1,0 +1,16 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+
+
+
+POST http://localhost:8080/api/product
+Content-Type: application/json
+
+{
+  "name": "iphone-16",
+  "description": "Product of Apple",
+  "price": 1500
+}
