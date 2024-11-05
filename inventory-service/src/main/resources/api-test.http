@@ -3,8 +3,8 @@ POST http://localhost:8082/api/inventory
 Content-Type: application/json
 
 {
-"skuCode" : "iPhone-15",
-"quantity": 50
+"skuCode" : "iPhone-14",
+"quantity": 100
 }
 
 ### Get product by skucode

@@ -1,6 +1,5 @@
 package org.example.productservice.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.example.productservice.dto.ProductRequest;
 import org.example.productservice.dto.ProductResponse;
 import org.example.productservice.service.ProductService;

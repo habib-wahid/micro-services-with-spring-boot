@@ -10,7 +10,7 @@ Content-Type: application/json
 {
   "orderItemDtoList": [
     {
-      "skuCode": "iPhone_14",
+      "skuCode": "iPhone-14",
       "price": 1300,
       "quantity": 1
     }
