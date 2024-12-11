@@ -1,12 +1,12 @@
 
-POST http://localhost:8082/api/inventory
+POST http://localhost:8083/api/inventory
 Content-Type: application/json
 
 {
-"skuCode" : "iPhone-14",
+"skuCode" : "iPhone-17",
 "quantity": 100
 }
 
 ### Get product by skucode
 
-GET http://localhost:8082/api/inventory/iPhone-12
+GET http://localhost:8083/api/inventory?skuCode=iPhone-13
