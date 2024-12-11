@@ -7,6 +7,7 @@
 ### 2. Order Service
 ### 3. Inventory Service
 ### 4. Discovery Server
+### 5. Api Gateway
 
 # Discovery Server Architecture
-### ![Diagram Description](assets/discovery-server-architecture.png)
+### ![Diagram Description](assets/micro-service-architecture.png)
