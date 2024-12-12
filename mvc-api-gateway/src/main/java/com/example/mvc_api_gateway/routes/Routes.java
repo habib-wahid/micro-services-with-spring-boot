@@ -39,8 +39,10 @@ public class Routes {
     @Bean
     public RouterFunction<ServerResponse> inventoryServiceRoutes() {
         String inventoryServiceUrl = resolveServiceUrl("inventory-service");
+        System.out.println("Inventory service url: " + inventoryServiceUrl);
         return GatewayRouterFunctions.route("inventory-service")
                 .route(RequestPredicates.path("/api/inventory"), HandlerFunctions.http(inventoryServiceUrl))
+                .route(RequestPredicates.path("/api/inventory/hello-world"), HandlerFunctions.http(inventoryServiceUrl))
                 .build();
     }
 

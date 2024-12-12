@@ -8,6 +8,8 @@ import org.example.inventoryservice.entity.Inventory;
 import org.example.inventoryservice.repository.InventoryRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.function.ServerRequest;
+import org.springframework.web.servlet.function.ServerResponse;
 
 import java.util.List;
 
@@ -37,5 +39,20 @@ public class InventoryService {
                 .quantity(inventoryRequest.getQuantity())
                 .build();
         inventoryRepository.save(inventory);
+    }
+
+    public List<Inventory> getAllInventory() {
+        return inventoryRepository.findAll();
+    }
+
+    public ServerResponse getInventoryById(ServerRequest serverRequest) {
+        Long id = Long.parseLong(serverRequest.pathVariable("id"));
+        InventoryResponse inventoryResponse = inventoryRepository.findById(id)
+                .map(inventory -> InventoryResponse.builder()
+                        .skuCode(inventory.getSkuCode())
+                        .available(inventory.getQuantity() > 0)
+                        .build())
+                .orElse(null);
+        return ServerResponse.ok().body(inventoryResponse);
     }
 }
