@@ -11,6 +11,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println("Here comes first");
        return http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests.anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2ResourceServer ->oauth2ResourceServer.jwt(Customizer.withDefaults()))
