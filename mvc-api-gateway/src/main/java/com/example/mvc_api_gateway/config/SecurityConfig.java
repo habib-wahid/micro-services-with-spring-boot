@@ -13,7 +13,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         System.out.println("Here comes first");
        return http.authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests.anyRequest().authenticated())
+                authorizeRequests
+//                        .requestMatchers("/actuator/health").permitAll()
+                        .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2ResourceServer ->oauth2ResourceServer.jwt(Customizer.withDefaults()))
                 .build();
     }
