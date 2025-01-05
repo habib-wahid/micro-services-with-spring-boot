@@ -1,12 +1,14 @@
 package org.example.orderservice.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.OrderEvent;
 import org.example.orderservice.dto.InventoryResponse;
 import org.example.orderservice.dto.OrderItemDto;
 import org.example.orderservice.dto.OrderRequest;
 import org.example.orderservice.entity.Order;
 import org.example.orderservice.entity.OrderItems;
 import org.example.orderservice.repository.OrderRepository;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -20,6 +22,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClient;
+    private final KafkaTemplate<String, OrderEvent> kafkaTemplate;
 
     public void placeOrder(OrderRequest orderRequest) {
         List<String> skuCodes = orderRequest.getOrderItemDtoList().stream()
@@ -51,6 +54,8 @@ public class OrderService {
                     .toList();
             order.setOrderItems(itemsList);
             orderRepository.save(order);
+            OrderEvent orderEvent = new OrderEvent(order.getOrderNumber(), "habib11wahid@gmail.com");
+            kafkaTemplate.send("order-topic", orderEvent);
         } else {
             throw new IllegalArgumentException("Product not in stock, try again later");
         }

@@ -23,6 +23,8 @@
     <module>discovery-server</module>
     <module>api-gateway</module>
     <module>mvc-api-gateway</module>
+      <module>event-library</module>
+      <module>notification-service</module>
   </modules>
 
   <properties>
