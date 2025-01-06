@@ -4,22 +4,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity(name = "inventory")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@AllArgsConstructor @NoArgsConstructor
+@Getter @Setter
 @Builder
-public class Inventory {
+public class InventoryEventSource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String skuCode;
-    private Integer quantity;
     private String productId;
+    private Integer transactionQuantity;
+    private String event;
 }

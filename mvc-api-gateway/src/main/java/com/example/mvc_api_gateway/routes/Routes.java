@@ -29,7 +29,7 @@ public class Routes {
     public RouterFunction<ServerResponse> productServiceRoutes() {
         String productServiceUrl = resolveServiceUrl("product-service");
         return GatewayRouterFunctions.route("product-service")
-                .route(RequestPredicates.path("/api/product"),
+                .route(RequestPredicates.path("/api/product/**"),
                         HandlerFunctions.http(productServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("product-service-circuit-breaker",
                         URI.create("forward:/fallbackRoute")))

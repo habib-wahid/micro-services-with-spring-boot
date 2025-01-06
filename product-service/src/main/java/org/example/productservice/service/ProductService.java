@@ -22,6 +22,7 @@ public class ProductService {
                 .name(productRequest.getName())
                 .price(productRequest.getPrice())
                 .description(productRequest.getDescription())
+                .skuCode(productRequest.getSkuCode())
                 .build();
 
         productRepository.save(product);
@@ -33,6 +34,13 @@ public class ProductService {
         return products.stream().map(this::mapToProductResponse).toList();
     }
 
+    public boolean checkAllProductsExist(List<String> productIds) {
+        return productRepository.countByIds(productIds) == productIds.size();
+    }
+
+    public List<Product> findAllProductsByIds(List<String> productIds) {
+        return productRepository.findAllById(productIds);
+    }
     private ProductResponse mapToProductResponse(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
